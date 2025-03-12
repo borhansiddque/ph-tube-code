@@ -16,17 +16,19 @@ function loadVideos() {
 }
 
 const loadCategoriesVideos = (id) => {
-
   const url = `
-    https://openapi.programming-hero.com/api/phero-tube/category/${id}
-  `;
-  console.log(url);
+    https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
 
   fetch(url)
-  .then(res => res.json())
-  .then(data => console.log(data))
-  
-}
+    .then((res) => res.json())
+    .then((data) => {
+      const clickedButton = document.getElementById(`btn-${id}`);
+      clickedButton.classList.add('active');
+      console.log(clickedButton);
+      
+      displayVideos(data.category);
+    });
+};
 
 function displayCategories(categories) {
   // Get The Container
@@ -37,7 +39,7 @@ function displayCategories(categories) {
     // Create Element
     const categoryDiv = document.createElement("div");
     categoryDiv.innerHTML = `
-      <button onclick="loadCategoriesVideos(${cat.category_id})" class="btn btn-sm bg-gray-200 hover:bg-red-500 hover:text-white">${cat.category}</button>
+      <button id="btn-${cat.category_id}" onclick="loadCategoriesVideos(${cat.category_id})" class="btn btn-sm bg-gray-200 hover:bg-red-500 hover:text-white">${cat.category}</button>
     `;
     // Append The Element
     categoryContainer.append(categoryDiv);
@@ -46,9 +48,22 @@ function displayCategories(categories) {
 
 const displayVideos = (videos) => {
   const videosContainer = document.getElementById("videos-container");
-  videos.forEach((video) => {
-    console.log(video);
+  videosContainer.innerHTML = "";
 
+  if (videos.length === 0) {
+    videosContainer.innerHTML = `
+      <div class="py-20 col-span-4 flex flex-col items-center justify-center text-center">
+        <div class="">
+          <img src="./images/icon.png" alt="">
+        </div>
+        <h2 class="text-[#171717] text-3xl font-bold mt-5">Oops!! Sorry, There is no <br> content here</h2>
+      </div>
+    `;
+
+    return;
+  }
+
+  videos.forEach((video) => {
     const videoCard = document.createElement("div");
     videoCard.classList.add("cursor-pointer");
     videoCard.innerHTML = `
@@ -73,7 +88,7 @@ const displayVideos = (videos) => {
         </div>
       </div>
     `;
-    
+
     videosContainer.append(videoCard);
   });
 };
