@@ -16,8 +16,8 @@ function loadCategories() {
     });
 }
 
-function loadVideos() {
-  fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
+function loadVideos(searchValue = "") {
+  fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchValue}`)
     .then((res) => res.json())
     .then((data) => {
       removeActiveClass();
@@ -140,6 +140,11 @@ const displayVideos = (videos) => {
     videosContainer.append(videoCard);
   });
 };
+
+document.getElementById('searchInput').addEventListener('keyup', (e) => {
+  loadVideos(e.target.value);
+})
+
 
 loadCategories();
 loadVideos();
