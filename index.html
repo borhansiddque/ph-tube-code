@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PH Tube - API Practice</title>
-    <link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon" />
     <!-- Tailwind CSS & DaisyUI CDN -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
@@ -22,29 +22,56 @@
   </head>
   <body class="px-14 py-8">
     <header>
-      <nav class="flex items-center justify-between border-b-2 text-gray-200 pb-8">
+      <nav
+        class="flex items-center justify-between border-b-2 text-gray-200 pb-8"
+      >
         <div class="">
-          <a href=""><img src="./images/logo.png" alt="Website Logo" width="150px"></a>
+          <a href=""
+            ><img src="./images/logo.png" alt="Website Logo" width="150px"
+          /></a>
         </div>
         <button class="btn bg-gray-300">Sort by View</button>
         <button class="btn bg-red-500 text-white p-6">Blog</button>
       </nav>
     </header>
     <main>
-      <div id="category-container" class="flex justify-center items-center gap-5 py-8">
+      <div
+        id="category-container"
+        class="flex justify-center items-center gap-5 py-8"
+      >
         <div class="">
-          <button onclick="loadVideos()" id="btn-all" class="btn btn-sm">All</button>
+          <button onclick="loadVideos()" id="btn-all" class="btn btn-sm">
+            All
+          </button>
         </div>
       </div>
       <section id="videos-container" class="mt-10 grid grid-cols-4 gap-10">
-        <div class="py-20 col-span-4 flex flex-col items-center justify-center text-center">
+        <div
+          class="py-20 col-span-4 flex flex-col items-center justify-center text-center"
+        >
           <div class="">
-            <img src="./images/icon.png" alt="">
+            <img src="./images/icon.png" alt="" />
           </div>
-          <h2 class="text-[#171717] text-3xl font-bold mt-5">Oops!! Sorry, There is no <br> content here</h2>
+          <h2 class="text-[#171717] text-3xl font-bold mt-5">
+            Oops!! Sorry, There is no <br />
+            content here
+          </h2>
         </div>
-
       </section>
+
+      <!-- Open the modal using ID.showModal() method -->
+      <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+      <dialog id="video_details" class="modal">
+        <div class="modal-box">
+          <div id="details-container"></div>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </main>
     <script src="./scripts/script.js"></script>
   </body>
